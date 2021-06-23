@@ -5,34 +5,29 @@ import java.util.Scanner;
 import java.util.Arrays;
 public class test {
 
-    static Scanner datos = new Scanner(System.in);
+      static Scanner datos = new Scanner(System.in);
 
     public static void main(String[] args) {
 
         int nroHmbres, ne;
-        double vari;
         System.out.println("Cuántos estudiantes desea ingresar:");
         int n = datos.nextInt();
+        
         Estudiante[] estudiantes = new Estudiante[n];
-
+        
         llenaEstudiante(estudiantes);
         nroHmbres = porcentajeGenero(estudiantes);
-        System.out.println("El listado de estudiantes ");
-        for ( int i =0; i <estudiantes.length;i++){
-        System.out.println(estudiantes[i]);
-       }
-        System.out.println("estudiantes ordenados");
-        int k=0;
-        mayorMenor(estudiantes);
-             //llamar al metodo para ordenar 
-        for ( int i =0; i <estudiantes.length;i++){
-        System.out.println(estudiantes[i].toString());
-       }
-        Arrays.sort(estudiantes);
+        System.out.println("El listado de estudiantes ordenados de mayor a menor nota");
+        //llamar al metodo para ordenar 
+        for (Estudiante est: estudiantes){
+            System.out.println(est);
+            
+        }
         System.out.println("El porcentaje de Hombres por encima del promedio : " + porentajePromedio(estudiantes, nroHmbres, 'm'));
         System.out.println("El porcentaje de Mujeres por encima del promedio : " + porentajePromedio(estudiantes, nroHmbres, 'f'));
         ne = notaAlta(estudiantes);
         System.out.println("El estudiante con la màs nota alta es:" + estudiantes[ne].getNombre());
+        
 
     }
 
@@ -111,20 +106,5 @@ public class test {
 
         }
         return indice;
-    }
-    public static void mayorMenor(Estudiante est[]){
-        double temp;
-        for(int j =0;j<est.length;j++){
-            for(int i=0;i<est.length-1;i++){
-                double temp1 = est[i].getNota();
-                double temp2 = est[i+1].getNota();
-                if(est[i].getNota()>est[i].getNota()){
-                    temp=temp1;
-                    temp1=temp2;
-                    temp2=temp;
-                }
-            }
-        }
-
     }
 }
