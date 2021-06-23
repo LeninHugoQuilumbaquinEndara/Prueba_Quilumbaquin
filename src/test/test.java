@@ -3,31 +3,32 @@ package test;
 import dominio.Estudiante;
 import java.util.Scanner;
 import java.util.Arrays;
+
 public class test {
 
-      static Scanner datos = new Scanner(System.in);
+    static Scanner datos = new Scanner(System.in);
 
     public static void main(String[] args) {
 
         int nroHmbres, ne;
         System.out.println("Cuántos estudiantes desea ingresar:");
         int n = datos.nextInt();
-        
+
         Estudiante[] estudiantes = new Estudiante[n];
-        
+
         llenaEstudiante(estudiantes);
         nroHmbres = porcentajeGenero(estudiantes);
         System.out.println("El listado de estudiantes ordenados de mayor a menor nota");
         //llamar al metodo para ordenar 
-        for (Estudiante est: estudiantes){
+        for (Estudiante est : estudiantes) {
+            ordmenorMayor(estudiantes);
             System.out.println(est);
-            
+
         }
         System.out.println("El porcentaje de Hombres por encima del promedio : " + porentajePromedio(estudiantes, nroHmbres, 'm'));
         System.out.println("El porcentaje de Mujeres por encima del promedio : " + porentajePromedio(estudiantes, nroHmbres, 'f'));
         ne = notaAlta(estudiantes);
         System.out.println("El estudiante con la màs nota alta es:" + estudiantes[ne].getNombre());
-        
 
     }
 
@@ -106,5 +107,16 @@ public class test {
 
         }
         return indice;
+    }
+
+    public static void ordmenorMayor(Estudiante est[]) {
+        double aux;
+        for (int i = 1; i < est.length; i++) {
+            if (est[i - 1].getNota() < est[i].getNota()) {
+                aux = est[i].getNota();
+                est[i].setNota(est[i - 1].getNota());
+                est[i - 1].setNota(aux);
+            }
+        }
     }
 }
